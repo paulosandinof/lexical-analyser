@@ -1,0 +1,3 @@
+int inteiro = (int a, int b, aint);
+aint = 2 / 3;
+Aint = 3 * 2.5;
