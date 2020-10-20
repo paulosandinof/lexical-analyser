@@ -1,6 +1,10 @@
 %{
 int COMMENT=0;
 int n_line = 1;
+
+ void yyerror(char const *s) {
+      fprintf(stderr, "line %d: %s\n", n_line, s);
+    }
 %}
 id [[a-z]+[a-zA-Z0-9]*
 %%
@@ -8,7 +12,7 @@ id [[a-z]+[a-zA-Z0-9]*
 \n {n_line++; printf("\n");} 
 
 
-#.* {printf("\n%s preprocessor\n\n",yytext);}
+#.* {printf("\n%s PREPROCESS\n\n",yytext);}
 
 "/*" {COMMENT=1;}
 "*/" {COMMENT=0;}
@@ -24,6 +28,8 @@ id [[a-z]+[a-zA-Z0-9]*
 \! {if(!COMMENT)printf("BANG ");}
 \, {if(!COMMENT)printf("COMMA");}
 [;] {if(!COMMENT)printf("SEMI ");}
+\& {if(!COMMENT)printf("AMPER ");}
+\*\* {if(!COMMENT)printf("POW ");}
 
 
 \+ {if(!COMMENT)printf("OPERATOR(PLUS)");}
@@ -70,7 +76,7 @@ return {if(!COMMENT)printf("RETURN ");}
 [0-9]+ {if(!COMMENT) printf("NUM(%s) ",yytext);}
 [+-]?[0-9]+"."[0-9]* {if(!COMMENT)printf("REAL(%s0) ",yytext);}
 
-[^ \t] {}
+[^ \t] yyerror("Error in Syntax");
 
 %%
 int yywrap(){return 1;}
