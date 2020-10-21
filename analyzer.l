@@ -24,8 +24,8 @@ id [a-zA-Z][a-zA-Z0-9]*
 \{                      {if(!COMMENT) printf("LBRACE");}
 \}                      {if(!COMMENT) printf("RBRACE");}
 
-\( 	                  {if(!COMMENT) printf(" LPAREN ");}
-\) 	                  {if(!COMMENT) printf(" RPAREN");}
+\( 	                    {if(!COMMENT) printf(" LPAREN ");}
+\) 	                    {if(!COMMENT) printf(" RPAREN");}
 
 \[                      {if(!COMMENT) printf(" LBRACKET ");}    
 \]                      {if(!COMMENT) printf(" RBRACKET");}
@@ -51,7 +51,7 @@ id [a-zA-Z][a-zA-Z0-9]*
 and                     {if(!COMMENT) printf("AND");}
 
 \|\| |
-or	                  {if(!COMMENT) printf("OR");}
+or	                    {if(!COMMENT) printf("OR");}
 
 \!                      {if(!COMMENT) printf("NOT");}    
 \==                     {if(!COMMENT) printf("EQUAL");}
@@ -81,7 +81,7 @@ return                  {if(!COMMENT) printf("RETURN");}
 [0-9]+                  {if(!COMMENT) printf("NUM(%s)",yytext);}
 [+-]?[0-9]+"."[0-9]*    {if(!COMMENT) printf("REAL(%s0)",yytext);}
 
-[^ \t]                  yyerror("Error in Syntax:", yytext);
+[^ \t]                  yyerror("Lexical Error:", yytext);
 
 %%
 
