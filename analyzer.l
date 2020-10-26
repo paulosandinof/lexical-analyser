@@ -4,7 +4,7 @@ int COMMENT= 0;
 int n_line = 1;
 
 void yyerror(char const *s, char *yytext) {
-      fprintf(stderr, "line %d: %s %s\n", n_line, s, yytext);
+    fprintf(stderr, "line %d: %s %s\n", n_line, s, yytext);
 }
 
 %}
@@ -64,11 +64,11 @@ or	                    {if(!COMMENT) printf("OR");}
 
 =                       {if(!COMMENT) printf("ASSIGN");}
 
-int   |
-float |
-char  |
-double|
-long  |
+int    |
+float  |
+char   |
+double |
+long   |
 void                    {if(!COMMENT) printf("TYPE(%s)", yytext);}
 
 if                      {if(!COMMENT) printf("IF");}
