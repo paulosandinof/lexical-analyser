@@ -9,7 +9,7 @@ void yyerror(char const *s, char *yytext) {
 
 %}
 
-id [a-zA-Z][a-zA-Z0-9]*
+id [a-z][a-zA-Z0-9]*
 
 %%
 
